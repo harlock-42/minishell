@@ -1,0 +1,21 @@
+
+erreur de valgrind / leaks
+
+---
+
+norminette
+
+test ne passant pas :
+
+--- 
+code erreur builts-ins
+
+---
+env -i :
+
+- cd / segfault
+
+unset :
+
+il faut check la validite du nom de la variable
+Si l argument n est pas valide, la commande ne s arrete pas
