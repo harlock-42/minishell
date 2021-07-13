@@ -22,7 +22,7 @@ static	size_t	len_token(char *str, int *kind)
 
 static	t_list	*parse_value(char *value, t_list *lex)
 {
-	int	kind;
+	int		kind;
 	size_t	i;
 	size_t	size;
 	char	*token;

@@ -51,7 +51,7 @@ static	int	go_to_old_path_continued(char *old_pwd,
 
 static	int	go_to_old_path(void)
 {
-	int	ret;
+	int		ret;
 	char	*name_var;
 	char	*old_pwd;
 	char	*curd;

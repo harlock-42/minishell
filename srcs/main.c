@@ -29,7 +29,7 @@ int	main(void)
 	t_list	*lex;
 	t_cli	*cli;
 	char	*read;
-	int	ret;
+	int		ret;
 
 	ret = 0;
 	lex = lst_new();

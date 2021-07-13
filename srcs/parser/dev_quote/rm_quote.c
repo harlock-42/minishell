@@ -35,8 +35,8 @@ static	char	*rm_interlocked_quote(char *str)
 {
 	char	*new;
 	char	quote;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -64,8 +64,8 @@ static	char	*rm_interlocked_quote(char *str)
 char	*rm_quote(char *str)
 {
 	char	*new;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 1;
 	j = 0;

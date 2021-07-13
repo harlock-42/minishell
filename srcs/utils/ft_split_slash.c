@@ -93,7 +93,7 @@ static	char	**dup_split(char **split, char *str, char *sep)
 	return (split);
 }
 
-char			**ft_split_slash(char *str, char *sep)
+char	**ft_split_slash(char *str, char *sep)
 {
 	char	**split;
 	size_t	size;
@@ -101,7 +101,8 @@ char			**ft_split_slash(char *str, char *sep)
 
 	i = 0;
 	size = len_split(str, sep);
-	if (!(split = (char **)malloc(sizeof(char *) * (size + 1))))
+	split = (char **)malloc(sizeof(char *) * (size + 1));
+	if (split == NULL)
 		return (NULL);
 	while (i <= (int)size)
 	{
@@ -110,14 +111,11 @@ char			**ft_split_slash(char *str, char *sep)
 	}
 	if (size == 0)
 	{
-		if (!(split[0] = malloc(1)))
-		{
+		split[0] = malloc(1);
+		if (split[0] == NULL)
 			free(split);
-			return (NULL);
-		}
 		return (split);
 	}
-	if (!(split = dup_split(split, str, sep)))
-		return (NULL);
+	split = dup_split(split, str, sep);
 	return (split);
 }

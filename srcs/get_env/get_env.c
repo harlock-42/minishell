@@ -77,7 +77,7 @@ static	char	*get_name(char *str)
 
 static	char	*get_value(char *str)
 {
-	int	i;
+	int		i;
 	size_t	size;
 	char	*value;
 
@@ -105,7 +105,7 @@ static	char	*get_value(char *str)
 
 t_list	*get_env(t_list *env, int *ret)
 {
-	int		i;
+	int			i;
 	extern char	**environ;
 	char		*name;
 	char		*value;

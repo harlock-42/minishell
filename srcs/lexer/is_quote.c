@@ -24,10 +24,10 @@ static	int	find_top(int foot, char *str, char quote)
 
 int	is_quote(int y, char *str)
 {
-	int	top;
-	int	foot;
-	int	i;
-	char		quote;
+	int		top;
+	int		foot;
+	int		i;
+	char	quote;
 
 	top = 0;
 	foot = 0;

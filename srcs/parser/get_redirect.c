@@ -38,7 +38,7 @@ static	int	is_a_red(t_list *cmd)
 static	t_list	*get_red(t_list *cmd)
 {
 	t_list	*red;
-	int	red_code;
+	int		red_code;
 
 	red = NULL;
 	red_code = 0;
