@@ -111,7 +111,7 @@ t_cli		*parser(t_list *lex);
 t_cli		*dev_quote(t_cli *cli);
 t_cli		*get_cli(t_list *lex);
 t_cli		*get_cli_continued(t_list *lex, t_cli *cli,
-	t_list *cmd, t_list *dup);
+				t_list *cmd, t_list *dup);
 t_cli		*get_redirect(t_cli *cli);
 t_cli		*kind_cli(t_cli *cli);
 t_cli		*remove_bs(t_cli *cli);
@@ -168,7 +168,7 @@ int			ft_left_or_right(int kind);
 int			ft_red_in(t_list **red);
 char		**ft_env_to_tab(t_list *cmd, int depth);
 int			ft_wrong_fd(char *str);
-t_list 		*ft_find_path(t_list *cmd);
+t_list		*ft_find_path(t_list *cmd);
 char		*ft_double_strjoin(char *str1, char *str2, char *str3);
 void		ft_exec_failed(char **env, char **paths, char *str, char **av);
 
@@ -194,6 +194,5 @@ int			is_arg_exit_valid(char *str);
 int			is_path_valid(char *str);
 int			print_err_cd(char *str, char *old_path);
 int			print_export(void);
-
 
 #endif

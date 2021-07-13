@@ -60,7 +60,7 @@ static	char	*token_expansion_quote(char *str)
 t_list	*add_back_token_double_quote(char *str, t_list *lex)
 {
 	char	*token;
-	int	kind;
+	int		kind;
 
 	token = NULL;
 	kind = WD_TOK;

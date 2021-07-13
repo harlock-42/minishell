@@ -8,9 +8,9 @@
 
 int	len_first_quote(char *str, int size)
 {
-	int	nb_quote;
+	int		nb_quote;
 	char	quote;
-	int	i;
+	int		i;
 
 	quote = *str;
 	nb_quote = 0;

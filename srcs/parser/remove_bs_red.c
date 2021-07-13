@@ -20,8 +20,8 @@ static	size_t	len_new(char *str)
 
 static	char	*dup_without_backslash(char *str, size_t size)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*new;
 
 	i = 0;

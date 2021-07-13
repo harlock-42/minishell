@@ -39,9 +39,9 @@ int	ft_echo(t_list *cmd)
 	noption = 0;
 	if (cmd != NULL)
 	{
-		while (cmd != NULL &&
-		ft_is_an_echoption(cmd->token, &noption) == 1)
-				cmd = cmd->next;
+		while (cmd != NULL
+			&& ft_is_an_echoption(cmd->token, &noption) == 1)
+			cmd = cmd->next;
 		while (cmd != NULL)
 		{
 			ft_putstr_fd(cmd->token, 1);
