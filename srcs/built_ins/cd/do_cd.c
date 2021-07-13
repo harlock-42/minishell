@@ -50,7 +50,7 @@ static	int	handle_path_var(char *path)
 	path = getcwd(NULL, 0);
 	if (path == NULL)
 	{
-		ft_perror("minishell: cd");
+		ft_perror("minishell: cd :");
 		return (-1);
 	}
 	ret = modify_variable("PWD", path, 0);
