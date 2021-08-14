@@ -49,7 +49,6 @@ int	make_a_cli(t_list *cmd)
 	t_cli	*cli;
 
 	cli = get_cli(cmd);
-	free(cmd);
 	if (cli == NULL)
 		return (-1);
 	cli = get_redirect(cli);
