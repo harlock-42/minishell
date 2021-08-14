@@ -1,10 +1,11 @@
 #include "../include/minishell.h"
 
-static	void	minishell(char *read, t_list *lex, t_cli *cli)
+void	minishell(char *read, t_list *lex, t_cli *cli)
 {
 	while (1)
 	{
-		read = readline_color("Echecs $ ", PROMPT_COLOR, NC);
+		if (read == NULL)
+			read = readline_color("Echecs $ ", PROMPT_COLOR, NC);
 		if (read == NULL)
 			ft_exit(NULL);
 		if (read)
@@ -15,12 +16,14 @@ static	void	minishell(char *read, t_list *lex, t_cli *cli)
 			cli = parser(lex);
 		g_glob.aff_prompt = NO;
 		g_glob.sig_quit = 1;
+		lst_print_cli(cli);
 		if (cli)
 			ft_master(cli);
 		g_glob.sig_quit = 0;
 		g_glob.aff_prompt = YES;
 		cli = free_cli(cli);
 		lex = lst_free(lex);
+		read = NULL;
 	}
 }
 

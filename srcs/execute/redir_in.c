@@ -12,6 +12,7 @@ int	ft_wrong_fd(char *str)
 void	ft_free_read(char *read)
 {
 	free(read);
+	g_glob.aff_prompt = NO;
 	return ;
 }
 
@@ -21,9 +22,10 @@ void	ft_heredoc(char *delim)
 	char	*read;
 
 	fd = open("/tmp/here-document", O_CREAT | O_TRUNC | O_WRONLY, 0666);
-	while (1)
+	g_glob.aff_prompt = YES;
+	while (1 && g_glob.ret != 130)
 	{
-		read = readline("> ");
+		get_next_line_bis(0, &read);
 		if (read == NULL)
 		{
 			ft_putstr_fd
@@ -39,6 +41,7 @@ void	ft_heredoc(char *delim)
 			free(read);
 		}
 	}
+	g_glob.aff_prompt = NO;
 	close(fd);
 }
 
@@ -71,14 +74,17 @@ int	ft_red_in(t_list **red)
 	if ((*red)->kind == R_HEREDOC)
 	{
 		ft_heredoc((*red)->token);
-		fd = open("/tmp/here-document", O_RDONLY);
+		if (g_glob.ret != 130)
+			fd = open("/tmp/here-document", O_RDONLY);
+		else
+			return (0);
 	}
 	else
 		fd = open((*red)->token, O_RDONLY);
 	if (fd == -1)
 		return (ft_wrong_fd((*red)->token));
 	if (dup2(fd, 0) == -1)
-		return (ft_return(fd, 0, (*red)->token));
+		return (ft_return(0, fd, (*red)->token));
 	close(fd);
 	(*red) = (*red)->next;
 	return (1);

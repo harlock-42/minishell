@@ -146,6 +146,7 @@ t_list		*init_kind(t_list *env);
 void		ft_perror(const char *str);
 void		print_env(void);
 void		*free_tab_string(char **str);
+int			get_next_line_bis(int fd, char **line);
 
 /*
 ** EXECUTE
@@ -194,5 +195,7 @@ int			is_arg_exit_valid(char *str);
 int			is_path_valid(char *str);
 int			print_err_cd(char *str, char *old_path);
 int			print_export(void);
+
+void		minishell(char *read, t_list *lex, t_cli *cli);
 
 #endif

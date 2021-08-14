@@ -112,6 +112,7 @@ SRC		+=	token_len.c
 SRC		+=	unset.c
 SRC		+=	where_is_c.c
 SRC		+=	find_path.c
+SRC		+=	get_next_line_bis.c
 
 OBJ_PATH	=	./.obj/
 
