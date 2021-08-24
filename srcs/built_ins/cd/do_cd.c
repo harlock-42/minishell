@@ -4,7 +4,9 @@ static	char	*change_value(char *value, char *old)
 {
 	char	*new;
 
-	new = ft_strdup(value);
+	new = NULL;
+	if (value)
+		new = ft_strdup(value);
 	if (new == NULL)
 		return (NULL);
 	free(old);
@@ -34,6 +36,24 @@ static	int	modify_variable(char *name, char *value, int kind)
 	return (0);
 }
 
+static	int	handle_specific_case(char *name, char *path, char *repo)
+{
+	char	*new_path;
+	char	*tmp;
+
+	
+	tmp = ft_strjoin(path, "/");
+	if (tmp == NULL)
+		return (-1);
+	new_path = ft_strjoin(tmp, repo);
+	free(tmp);
+	if (new_path == NULL)
+		return (-1);
+	modify_variable(name, new_path, 0);
+	free(new_path);
+	return (2);
+}
+
 static	int	handle_path_var(char *path)
 {
 	int		ret;
@@ -47,16 +67,19 @@ static	int	handle_path_var(char *path)
 		old_pwd = ft_strdup(to_dup);
 	if (old_pwd == NULL)
 		return (-1);
-	path = getcwd(NULL, 0);
-	if (path == NULL)
+	ret = modify_variable("OLDPWD", old_pwd, 0);
+	to_dup = getcwd(NULL, 0);
+	if (to_dup == NULL)
+		ret = handle_specific_case("PWD", old_pwd, path);
+	else
+		ret = modify_variable("PWD", to_dup, 0);
+	free(old_pwd);
+	free(to_dup);
+	if (path == NULL || ret == (-1) || ret == 2)
 	{
 		ft_perror("minishell: cd :");
 		return (-1);
 	}
-	ret = modify_variable("PWD", path, 0);
-	ret = modify_variable("OLDPWD", old_pwd, 0);
-	free(old_pwd);
-	free(path);
 	return (1);
 }
 
@@ -70,7 +93,7 @@ int	do_cd(char *path)
 		error = errno;
 		if (error == ENOENT)
 		{
-			ft_printf("minishell: cd: No such file or folder\n");
+			ft_perror("minishell: cd:");
 			g_glob.ret = 1;
 		}
 		return (-1);
