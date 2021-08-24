@@ -106,7 +106,8 @@ int	handle_var(t_list *cmd)
 		name = get_name_var(cmd->token);
 		value = get_value_var(cmd->token, &kind);
 		if (value == NULL || name == NULL)
-			return (free_var(name, value, &cmd, tmp));
+			return (free_var(name, value, &cmd, tmp)
+);
 		if (do_export(name, value, kind) == (-1))
 			return (free_var(name, value, &cmd, tmp));
 		free_var(name, value, &cmd, tmp);
