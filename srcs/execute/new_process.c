@@ -58,9 +58,6 @@ void	ft_execute_loc(char **av, char **env, char **paths, int i)
 		ft_exec_failed(env, paths, ft_double_strjoin
 			("Minishell: ", av[0], " : "), av);
 	}
-	else if (execve(av[0], av, env) == -1 && errno != 2)
-		ft_exec_failed(env, paths, ft_double_strjoin
-			("Minishell: ", av[0], " : "), av);
 	else
 		ft_command_not_found(av, paths, env);
 }

@@ -15,11 +15,12 @@ void	minishell(char *read, t_list *lex, t_cli *cli)
 		if (lex)
 			cli = parser(lex);
 		g_glob.aff_prompt = NO;
-		g_glob.sig_quit = 1;
+		signal(SIGQUIT, do_sigquit);
 //		lst_print_cli(cli);
 		if (cli)
 			ft_master(cli);
-		g_glob.sig_quit = 0;
+			signal(SIGQUIT, SIG_IGN);
+
 		g_glob.aff_prompt = YES;
 		cli = free_cli(cli);
 		lex = lst_free(lex);
@@ -37,7 +38,7 @@ int	main(void)
 	ret = 0;
 	lex = lst_new();
 	signal(SIGINT, do_sigint);
-	signal(SIGQUIT, do_sigquit);
+	signal(SIGQUIT, SIG_IGN);
 	ft_bzero(&g_glob, sizeof(t_glob));
 	cli = NULL;
 	read = NULL;
