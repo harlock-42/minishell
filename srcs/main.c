@@ -16,7 +16,7 @@ void	minishell(char *read, t_list *lex, t_cli *cli)
 			cli = parser(lex);
 		g_glob.aff_prompt = NO;
 		g_glob.sig_quit = 1;
-		lst_print_cli(cli);
+//		lst_print_cli(cli);
 		if (cli)
 			ft_master(cli);
 		g_glob.sig_quit = 0;

@@ -43,7 +43,7 @@ int	ft_exit(t_list *cmd)
 	else if (size == 1)
 	{
 		if (is_arg_exit_valid(cmd->token) == NO)
-			return (our_exit(2));
+			return (our_exit(255));
 		if (g_glob.ispipe == 0)
 			write(2, "exit\n", 5);
 		exit(set_ret_value(cmd->token));
