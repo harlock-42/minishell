@@ -35,10 +35,12 @@ static	int	is_var_exist(char *name)
 		if (ft_strcmp(g_glob.env->name, word) == 0)
 		{
 			g_glob.env = tmp;
+			free(word);
 			return (YES);
 		}
 		g_glob.env = g_glob.env->next;
 	}
+	free(word);
 	g_glob.env = tmp;
 	return (NO);
 }
