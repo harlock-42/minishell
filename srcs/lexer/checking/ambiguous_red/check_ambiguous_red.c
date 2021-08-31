@@ -37,8 +37,10 @@ int	check_ambiguous_red(t_list *lex)
 	cmd = expand_if_we_need_to(cmd);
 	if (is_an_ambiguous_red(cmd) == YES)
 	{
+		lst_free(cmd);
 		g_glob.ret = 1;
 		return (make_a_cli(lex));
 	}
+	lst_free(cmd);
 	return (0);
 }
