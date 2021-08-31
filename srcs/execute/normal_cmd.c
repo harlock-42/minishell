@@ -69,7 +69,11 @@ void	ft_no_pipe_cmd(t_cli *cli)
 			ft_execute_norm_cmd(cli);
 	}
 	else if (ret == 0 && g_glob.ret != 130)
+	{
+		dup2(std_out, 1);
+		dup2(std_in, 0);
 		ft_printf("%s\n", strerror(errno));
+	}
 	dup2(std_out, 1);
 	dup2(std_in, 0);
 }
