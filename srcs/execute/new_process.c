@@ -47,14 +47,15 @@ void	ft_execute_loc(char **av, char **env, char **paths, int i)
 {
 	struct stat	buf;
 
-	if (paths != NULL && paths[i] == NULL
-		&& av[0][0] == '.' && av[0][1] == '/')
+	if (paths != NULL && paths[i] == NULL)
 	{
-		stat(av[0], &buf);
-		if (S_ISDIR(buf.st_mode))
-			errno = EISDIR;
-		else
-			execve(av[0], av, env);
+		if (stat(av[0], &buf) == 0)
+		{
+			if (buf.st_mode & S_IXUSR)
+				execve(av[0], av, env);
+			else if (S_ISDIR(buf.st_mode))
+				errno = EISDIR;	
+		}
 		ft_exec_failed(env, paths, ft_double_strjoin
 			("Minishell: ", av[0], " : "), av);
 	}
