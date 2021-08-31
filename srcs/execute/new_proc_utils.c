@@ -68,9 +68,9 @@ void	ft_freetab(char **tabl)
 
 void	ft_exit_proc(char **av, int fd)
 {
-	ft_freetab(av);
 	if (errno == ENOENT)
 		ft_putstr_fd(av[1], 2);
+	ft_freetab(av);
 	ft_putstr_fd(strerror(errno), 2);
 	ft_putstr_fd("\n", 2);
 	if (fd != 0)
