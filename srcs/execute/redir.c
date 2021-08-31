@@ -14,8 +14,17 @@
 
 int	ft_return(int i, int fd, char *str)
 {
-	if (fd != -1)
+	if (fd != -1 && i == 0)
 		close(fd);
+	else if (i == 1)
+	{
+		if (dup2(fd, 1) == -1)
+		{
+			close(fd);
+			ft_wrong_fd(str);
+		}
+		close(fd);
+	}
 	else
 	{
 		if (ft_strcmp(str, "\"\"") == 0)

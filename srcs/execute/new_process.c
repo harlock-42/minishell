@@ -43,18 +43,18 @@ char	**ft_cmd_to_tab(t_list *cmd, int depth)
 	return (av);
 }
 
-void	ft_execute_loc(char **av, char **env, char **paths, int i)
+void	ft_execute_loc(char **av, char **env, char **paths)
 {
 	struct stat	buf;
 
-	if (paths != NULL && paths[i] == NULL)
+	if (paths != NULL && av[0][0] && av[0][1] == '/')
 	{
 		if (stat(av[0], &buf) == 0)
 		{
-			if (buf.st_mode & S_IXUSR)
+			if (S_ISDIR(buf.st_mode))
+				errno = EISDIR;
+			else
 				execve(av[0], av, env);
-			else if (S_ISDIR(buf.st_mode))
-				errno = EISDIR;	
 		}
 		ft_exec_failed(env, paths, ft_double_strjoin
 			("Minishell: ", av[0], " : "), av);
@@ -65,23 +65,28 @@ void	ft_execute_loc(char **av, char **env, char **paths, int i)
 
 void	ft_execute(char **av, char **env, char **paths)
 {
+	struct stat buf;
 	char	*str;
 	int		i;
 
 	i = -1;
 	if (ft_strcmp("..", av[0]) == 0 || ft_strcmp(".", av[0]) == 0
 		|| av[0][0] == 0)
-		ft_command_not_found(av, paths, env);
-	while (paths != NULL && paths[++i] != NULL)
+		ft_command_not_found(av, paths, env);	
+	if (stat(av[0], &buf) == -1)
 	{
-		str = ft_strjoin(paths[i], av[0]);
-		if (execve(str, av, env) == -1 && errno == 2)
-			free(str);
-		else
-			ft_exec_failed(env, paths, ft_double_strjoin
-				("Minishell: ", paths[i], ft_strjoin(av[0], ": ")), av);
+		while (paths != NULL && paths[++i] != NULL)
+		{
+			str = ft_strjoin(paths[i], av[0]);
+			if (execve(str, av, env) == -1 && errno == 2)
+				free(str);
+			else
+				ft_exec_failed(env, paths, ft_double_strjoin("Minishell: ", paths[i], ft_strjoin(av[0], ": ")), av);
+		}
+		ft_command_not_found(av, paths, env);
 	}
-	ft_execute_loc(av, env, paths, i);
+	else
+		ft_execute_loc(av, env, paths);
 }
 
 int	ft_execute_prog(t_cli *cli)
