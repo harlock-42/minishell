@@ -16,7 +16,7 @@ static	int	is_arg_name_valid(char *str)
 	int	i;
 
 	i = 0;
-	if (str[0] == '\0')
+	if (str[0] == '\0' || (str[0] >= '0' && str[0] <= '9'))
 	{
 		ft_printf("minishell: export: %s : ", str);
 		ft_printf("invalid option\n");

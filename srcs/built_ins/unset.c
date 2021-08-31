@@ -62,7 +62,7 @@ static	int	is_var_valid(char *str)
 		}
 		++i;
 	}
-	if (str[0] == '\0')
+	if (str[0] == '\0' || (str[0] >= '0' && str[0] <= '9'))
 	{
 		ft_printf("minishell: unset : \" %s \" ", str);
 		ft_printf("invalid username\n");
