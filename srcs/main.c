@@ -19,7 +19,7 @@ void	minishell(char *read, t_list *lex, t_cli *cli)
 //		lst_print_cli(cli);
 		if (cli)
 			ft_master(cli);
-		//signal(SIGQUIT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
 		ft_printf("free !!\n");
 		g_glob.aff_prompt = YES;
 		cli = free_cli(cli);
