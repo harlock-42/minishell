@@ -21,8 +21,8 @@ void	ft_heredoc(char *delim)
 	int		fd;
 	char	*read;
 
-	fd = open("/tmp/here-document", O_CREAT | O_TRUNC | O_WRONLY, 0666);
 	signal(SIGQUIT, do_sigign);
+	fd = open("/tmp/here-document", O_CREAT | O_TRUNC | O_WRONLY, 0666);
 	g_glob.aff_prompt = YES;
 	while (1 && g_glob.ret != 130)
 	{
@@ -37,8 +37,7 @@ void	ft_heredoc(char *delim)
 			return (ft_free_read(read));
 		else
 		{
-			write(fd, read, ft_strlen(read));
-			write(fd, "\n", 1);
+			write(fd, ft_strjoin(read, "\n"), ft_strlen(read) + 1);
 			free(read);
 		}
 	}

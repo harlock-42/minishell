@@ -9,8 +9,6 @@ void	do_sigquit(int signum)
 
 void	do_sigign(int signum)
 {
-	//write(1, "\b\b\b", 3);
-	ft_printf("mais putain quoi\n");
-	//signal(SIGQUIT, SIG_IGN);
+	ft_putstr_fd("\b\b  \b\b", 0);
 	(void)signum;
 }
