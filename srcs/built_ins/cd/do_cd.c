@@ -41,7 +41,6 @@ static	int	handle_specific_case(char *name, char *path, char *repo)
 	char	*new_path;
 	char	*tmp;
 
-	
 	tmp = ft_strjoin(path, "/");
 	if (tmp == NULL)
 		return (-1);

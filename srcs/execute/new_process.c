@@ -66,15 +66,16 @@ void	ft_execute_loc(char **av, char **env, char **paths)
 
 void	ft_execute(char **av, char **env, char **paths)
 {
-	struct stat buf;
-	char	*str;
-	int		i;
+	struct stat	buf;
+	char		*str;
+	int			i;
 
 	i = -1;
 	if (ft_strcmp("..", av[0]) == 0 || ft_strcmp(".", av[0]) == 0
 		|| av[0][0] == 0)
-		ft_command_not_found(av, paths, env);	
-	if (stat(av[0], &buf) == -1 || (S_ISDIR(buf.st_mode) == 0 && !(buf.st_mode & S_IXUSR)))
+		ft_command_not_found(av, paths, env);
+	if (stat(av[0], &buf) == -1
+		|| (S_ISDIR(buf.st_mode) == 0 && !(buf.st_mode & S_IXUSR)))
 	{
 		while (paths != NULL && paths[++i] != NULL)
 		{
@@ -82,7 +83,8 @@ void	ft_execute(char **av, char **env, char **paths)
 			if (execve(str, av, env) == -1 && errno == 2)
 				free(str);
 			else
-				ft_exec_failed(env, paths, ft_double_strjoin("Minishell: ", paths[i], ft_strjoin(av[0], ": ")), av);
+				ft_exec_failed(env, paths, ft_double_strjoin
+					("Minishell: ", paths[i], ft_strjoin(av[0], ": ")), av);
 		}
 		ft_command_not_found(av, paths, env);
 	}

@@ -130,6 +130,7 @@ void		print_stx_err(char *str, int kind);
 
 void		do_sigint(int signum);
 void		do_sigquit(int signum);
+void		do_sigign(int signum);
 
 /*
 ** UTILS

@@ -37,9 +37,9 @@ static int	recursive(char **line, size_t index, int fd)
 
 int	get_next_line_bis(int fd, char **line)
 {
-	int ret;
-	t_list *lex;
-	t_cli *cli;
+	int		ret;
+	t_list	*lex;
+	t_cli	*cli;
 
 	lex = lst_new();
 	cli = NULL;

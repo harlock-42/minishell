@@ -22,8 +22,8 @@ void	ft_heredoc(char *delim)
 	char	*read;
 
 	fd = open("/tmp/here-document", O_CREAT | O_TRUNC | O_WRONLY, 0666);
+	signal(SIGQUIT, do_sigign);
 	g_glob.aff_prompt = YES;
-	read = NULL;
 	while (1 && g_glob.ret != 130)
 	{
 		get_next_line_bis(0, &read);

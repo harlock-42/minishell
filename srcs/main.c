@@ -16,7 +16,6 @@ void	minishell(char *read, t_list *lex, t_cli *cli)
 			cli = parser(lex);
 		g_glob.aff_prompt = NO;
 		signal(SIGQUIT, do_sigquit);
-//		lst_print_cli(cli);
 		if (cli)
 			ft_master(cli);
 		signal(SIGQUIT, SIG_IGN);
