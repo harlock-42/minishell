@@ -46,6 +46,7 @@ char	**ft_cmd_to_tab(t_list *cmd, int depth)
 void	ft_execute_loc(char **av, char **env, char **paths)
 {
 	struct stat	buf;
+	char		**execpath;
 
 	stat(av[0], &buf);
 	if (S_ISDIR(buf.st_mode))
@@ -54,14 +55,19 @@ void	ft_execute_loc(char **av, char **env, char **paths)
 		ft_exec_failed(env, paths, ft_double_strjoin
 			("Minishell: ", av[0], " : "), av);
 	}
-	if (paths != NULL && av[0][0] && av[0][1] == '/')
+	execpath = ft_split(av[0], '/');
+	if (execpath != NULL && execpath[1] != NULL)
 	{
 		execve(av[0], av, env);
+		ft_freetab(execpath);
 		ft_exec_failed(env, paths, ft_double_strjoin
 			("Minishell: ", av[0], " : "), av);
 	}
 	else
+	{
+		ft_freetab(execpath);
 		ft_command_not_found(av, paths, env);
+	}
 }
 
 void	ft_execute(char **av, char **env, char **paths)
