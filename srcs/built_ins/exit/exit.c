@@ -14,6 +14,16 @@
 
 static	int	our_exit(int ret)
 {
+	t_list	*tmp;
+
+	while (g_glob.env)
+	{
+		free(g_glob.env->name);
+		free(g_glob.env->value);
+		tmp = g_glob.env;
+		g_glob.env = g_glob.env->next;
+		free(tmp);
+	}
 	exit(ret);
 	return (1);
 }
@@ -46,13 +56,13 @@ int	ft_exit(t_list *cmd)
 			return (our_exit(255));
 		if (g_glob.ispipe == 0)
 			write(2, "exit\n", 5);
-		exit(set_ret_value(cmd->token));
+		our_exit(set_ret_value(cmd->token));
 	}
 	else
 	{
 		if (g_glob.ispipe == 0)
 			write(2, "exit\n", 5);
-		exit(0);
+		our_exit(0);
 		g_glob.ret = 0;
 	}
 	return (1);
