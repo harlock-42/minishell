@@ -22,9 +22,10 @@ int	(*g_tabfunc[8])(t_list*) = {
 	ft_exit,
 };
 
-char	**ft_bi_list(char **bis)
+char	**ft_bi_list(void)
 {
-	int	i;
+	int		i;
+	char	**bis;
 
 	i = -1;
 	bis = malloc(sizeof(char *) * 8);
@@ -53,10 +54,10 @@ int	is_a_built_in(t_cli *cli)
 {
 	char	**bi_list;
 	int		i;
+	t_list	*dup_cmd;
 
 	i = -1;
-	bi_list = NULL;
-	bi_list = ft_bi_list(bi_list);
+	bi_list = ft_bi_list();
 	if (bi_list == NULL)
 		return (-1);
 	while (bi_list[++i] != NULL)
@@ -67,6 +68,12 @@ int	is_a_built_in(t_cli *cli)
 	ft_freetab(bi_list);
 	if (i == 7)
 		return (0);
+	else if (i == 6)
+	{
+		dup_cmd = lst_dup(cli->cmd->next);
+		free_cli(cli);
+		return (g_tabfunc[i](cli->cmd->next));
+	}
 	else
 		return (g_tabfunc[i](cli->cmd->next));
 	return (0);

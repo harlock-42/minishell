@@ -1,4 +1,5 @@
 #include "minishell.h"
+
 static	int	is_var(char *str)
 {
 	if (str[0] == '$')

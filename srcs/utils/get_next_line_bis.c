@@ -26,9 +26,12 @@ static int	recursive(char **line, size_t index, int fd)
 	}
 	else if (ret != -1)
 	{
-		*line = (char *)malloc(sizeof(char) * (index + 1));
+		*line = (char *)malloc(sizeof(char) * (index + 2));
 		if (*line != NULL)
-			(*line)[index] = '\0';
+		{
+			(*line)[index] = '\n';
+			(*line)[index + 1] = '\0';
+		}
 		else
 			ret = -1;
 	}

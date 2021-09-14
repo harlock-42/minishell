@@ -36,32 +36,43 @@ static	int	set_ret_value(char *str)
 	ret = ft_atoll(str);
 	ret_char = (unsigned char)ret;
 	g_glob.ret = (int)ret_char;
+	free(str);
 	return ((int)ret_char);
+}
+
+int	valid_num_of_arg(char *str)
+{
+	if (is_arg_exit_valid(str) == NO)
+		return (our_exit(255));
+	if (g_glob.ispipe == 0)
+		write(2, "exit\n", 5);
+	our_exit(set_ret_value(str));
+	return (1);
 }
 
 int	ft_exit(t_list *cmd)
 {
 	size_t	size;
+	char	*str;
 
 	size = lst_size(cmd);
 	if (size > 1)
 	{
 		ft_printf("exit\nminishell: exit: too many arguments\n");
 		g_glob.ret = 1;
-		return (1);
+		lst_free(cmd);
 	}
 	else if (size == 1)
 	{
-		if (is_arg_exit_valid(cmd->token) == NO)
-			return (our_exit(255));
-		if (g_glob.ispipe == 0)
-			write(2, "exit\n", 5);
-		our_exit(set_ret_value(cmd->token));
+		str = ft_strdup(cmd->token);
+		lst_free(cmd);
+		valid_num_of_arg(str);
 	}
 	else
 	{
 		if (g_glob.ispipe == 0)
 			write(2, "exit\n", 5);
+		lst_free(cmd);
 		our_exit(0);
 		g_glob.ret = 0;
 	}

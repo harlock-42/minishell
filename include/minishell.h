@@ -41,14 +41,14 @@
 # define WD_VAR_AFF		17
 # define WD_VAR			18
 
-# define	CLI_SEP		20
-# define	CLI_CMD		21
-# define	CLI_VAR		22
-# define	CLI_NO_CMD	23
+# define CLI_SEP		20
+# define CLI_CMD		21
+# define CLI_VAR		22
+# define CLI_NO_CMD	23
 
-# define	R_STDIN		100
-# define	R_STDOUT	101
-# define	R_STDOUT_APP 102
+# define R_STDIN		100
+# define R_STDOUT	101
+# define R_STDOUT_APP 102
 # define R_HEREDOC		103
 # define R_HEREDOC_Q	104
 

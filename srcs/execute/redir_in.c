@@ -33,11 +33,11 @@ void	ft_heredoc(char *delim)
 ("minishell : warning : here-document delimited by end of file\n", 2);
 			return (ft_free_read(read));
 		}
-		else if (ft_strcmp(read, delim) == 0)
+		else if (ft_strncmp(read, delim, ft_strlen(delim)) == 0)
 			return (ft_free_read(read));
 		else
 		{
-			write(fd, ft_strjoin(read, "\n"), ft_strlen(read) + 1);
+			write(fd, read, ft_strlen(read));
 			free(read);
 		}
 	}
