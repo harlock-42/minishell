@@ -9,6 +9,7 @@ void	ft_end_of_pipe_cmd(int *piped, t_cli **cli, int **fdptab, int *i)
 	{
 		signal(SIGQUIT, do_sigquit);
 		ft_duped(piped, 0);
+		free((*fdptab));
 		ft_child_proc((*cli));
 	}
 	else if (fdp > 0)

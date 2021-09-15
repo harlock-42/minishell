@@ -73,6 +73,7 @@ void	ft_exit_proc(char **av, int fd)
 	ft_freetab(av);
 	ft_putstr_fd(strerror(errno), 2);
 	ft_putstr_fd("\n", 2);
+	ft_free_proc(g_glob.head);
 	if (fd != 0)
 		close(fd);
 	if (errno == EACCES || errno == EISDIR)
