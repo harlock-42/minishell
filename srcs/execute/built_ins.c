@@ -72,7 +72,7 @@ int	is_a_built_in(t_cli *cli)
 	{
 		dup_cmd = lst_dup(cli->cmd->next);
 		free_cli(cli);
-		return (g_tabfunc[i](cli->cmd->next));
+		return (g_tabfunc[i](dup_cmd));
 	}
 	else
 		return (g_tabfunc[i](cli->cmd->next));
