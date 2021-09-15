@@ -20,6 +20,7 @@ void	ft_command_not_found(char **av, char **paths, char **env)
 	ft_freetab(paths);
 	ft_freetab(env);
 	ft_freetab(av);
+	ft_free_proc(g_glob.head);
 	exit(127);
 }
 
@@ -48,6 +49,7 @@ void	ft_execute_loc(char **av, char **env, char **paths)
 	struct stat	buf;
 	char		**execpath;
 
+	buf.st_mode = 0;
 	stat(av[0], &buf);
 	if (S_ISDIR(buf.st_mode))
 	{
@@ -92,7 +94,7 @@ void	ft_execute(char **av, char **env, char **paths)
 				ft_exec_failed(env, paths, ft_double_strjoin
 					("Minishell: ", paths[i], ft_strjoin(av[0], ": ")), av);
 		}
-		ft_command_not_found(av, paths, env);
+		ft_execute_loc(av, env, paths);
 	}
 	else
 		ft_execute_loc(av, env, paths);

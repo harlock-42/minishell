@@ -17,20 +17,27 @@ void	ft_child_proc(t_cli *cli)
 		exit(EXIT_SUCCESS);
 	ret = is_a_built_in(cli);
 	if (ret == 1)
+	{
+		ft_free_proc(g_glob.head);
 		exit(EXIT_SUCCESS);
+	}
 	else if (ret < 0)
+	{
+		ft_free_proc(g_glob.head);
 		exit(ret * -1);
+	}
 	else
 		ft_execute_prog(cli);
 }
 
-void	ft_start_of_pipe(int *pipefds, int *piped, t_cli **cli)
+void	ft_start_of_pipe(int *pipefds, int *piped, t_cli **cli, int **fdptab)
 {
 	close(pipefds[0]);
 	dup2(pipefds[1], 1);
 	close(pipefds[1]);
 	if (*piped > 0)
 		ft_duped(piped, 0);
+	free((*fdptab));
 	ft_child_proc((*cli));
 }
 
@@ -52,7 +59,7 @@ void	ft_piped_cmd(int *piped, t_cli **cli, int **fdptab, int *i)
 	if (fdp == 0)
 	{
 		signal(SIGQUIT, do_sigquit);
-		ft_start_of_pipe(pipefds, piped, cli);
+		ft_start_of_pipe(pipefds, piped, cli, fdptab);
 	}
 	else if (fdp > 0)
 	{

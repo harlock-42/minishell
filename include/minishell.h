@@ -63,6 +63,7 @@ typedef struct s_glob
 	int		red;
 	int		ispipe;
 	t_list	*env;
+	t_cli	*head;
 }		t_glob;
 
 t_glob		g_glob;
@@ -173,6 +174,7 @@ int			ft_wrong_fd(char *str);
 t_list		*ft_find_path(t_list *cmd);
 char		*ft_double_strjoin(char *str1, char *str2, char *str3);
 void		ft_exec_failed(char **env, char **paths, char *str, char **av);
+void		ft_free_proc(t_cli *cli);
 
 /*
 ** BUILT_INS
