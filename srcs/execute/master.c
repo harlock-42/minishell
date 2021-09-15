@@ -23,7 +23,10 @@ int	*ft_fdptab(t_cli *cli)
 		i++;
 		cli = cli->next;
 	}
-	fdptab = malloc(sizeof(int) * (i + 1));
+	if (i == 1)
+		return (NULL);
+	else
+		fdptab = malloc(sizeof(int) * (i + 1));
 	return (fdptab);
 }
 
@@ -33,15 +36,15 @@ void	ft_print_crdmp(int sig)
 	ft_putstr_fd("Quit (Core dumped)\n", 1);
 }
 
-void	ft_wait_piped_cmd(int **fdptab)
+void	ft_wait_piped_cmd(int **fdptab, int i)
 {
 	int	status;
-	int	i;
 	int	fdp;
 	int	tempfdp;
 
-	i = -1;
 	fdp = 0;
+	(*fdptab)[i] = -1;
+	i = -1;
 	while ((*fdptab)[++i] != -1)
 	{
 		tempfdp = wait(&status);
@@ -86,7 +89,7 @@ int	ft_master(t_cli *cli)
 			ft_piped_cmd(&piped, &cli, &fdptab, &i);
 		}
 	}
-	fdptab[i] = -1;
-	ft_wait_piped_cmd(&fdptab);
+	if (fdptab != NULL)
+		ft_wait_piped_cmd(&fdptab, i);
 	return (0);
 }
