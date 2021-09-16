@@ -43,7 +43,10 @@ static	int	set_ret_value(char *str)
 int	valid_num_of_arg(char *str)
 {
 	if (is_arg_exit_valid(str) == NO)
+	{
+		free(str);
 		return (our_exit(255));
+	}
 	if (g_glob.ispipe == 0)
 		write(2, "exit\n", 5);
 	our_exit(set_ret_value(str));
@@ -60,7 +63,6 @@ int	ft_exit(t_list *cmd)
 	{
 		ft_printf("exit\nminishell: exit: too many arguments\n");
 		g_glob.ret = 1;
-		lst_free(cmd);
 	}
 	else if (size == 1)
 	{
