@@ -26,17 +26,16 @@ void	minishell(char *read, t_list *lex, t_cli *cli)
 		free(read);
 		if (lex)
 			cli = parser(lex);
+		g_glob.head = cli;
 		lex = lst_free(lex);
 		g_glob.aff_prompt = NO;
 		signal(SIGQUIT, do_sigquit);
 		if (cli)
-		{
-			g_glob.head = cli;
 			ft_master(cli);
-		}
 		signal(SIGQUIT, SIG_IGN);
 		g_glob.aff_prompt = YES;
 		cli = free_cli(cli);
+		g_glob.head = cli;
 		read = NULL;
 	}
 }

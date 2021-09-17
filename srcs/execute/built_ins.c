@@ -71,7 +71,6 @@ int	is_a_built_in(t_cli *cli)
 	else if (i == 6)
 	{
 		dup_cmd = lst_dup(cli->cmd->next);
-		free_cli(g_glob.head);
 		return (g_tabfunc[i](dup_cmd));
 	}
 	else

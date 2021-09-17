@@ -24,6 +24,8 @@ static	int	our_exit(int ret)
 		g_glob.env = g_glob.env->next;
 		free(tmp);
 	}
+	if (g_glob.head != NULL)
+		free_cli(g_glob.head);
 	exit(ret);
 	return (1);
 }
@@ -61,6 +63,7 @@ int	ft_exit(t_list *cmd)
 	size = lst_size(cmd);
 	if (size > 1)
 	{
+		lst_free(cmd);
 		ft_printf("exit\nminishell: exit: too many arguments\n");
 		g_glob.ret = 1;
 	}
@@ -76,7 +79,6 @@ int	ft_exit(t_list *cmd)
 			write(2, "exit\n", 5);
 		lst_free(cmd);
 		our_exit(0);
-		g_glob.ret = 0;
 	}
 	return (1);
 }
