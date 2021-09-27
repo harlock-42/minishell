@@ -15,10 +15,22 @@
 int	ft_pwd(t_list *cmd)
 {
 	char	*path;
+	size_t	size;
 
-	(void)cmd;
-	path = our_getenv("PWD");
+	size = lst_size(cmd);
+	if (size > 0)
+	{
+		ft_printf("pwd: too many arguments\n");
+		return (1);
+	}
+	path = getcwd(NULL, 0);
+	if (path == NULL)
+	{
+		ft_perror("Echec: pwd:");
+		return (1);
+	}
 	ft_printf("%s\n", path);
+	free(path);
 	g_glob.ret = 0;
 	return (1);
 }
