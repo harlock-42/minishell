@@ -62,7 +62,6 @@ static	t_list	*get_red(t_list *cmd)
 			cmd = cmd->next;
 			while (cmd && cmd->kind == WD_SEP_TOK)
 				cmd = cmd->next;
-			printf("%s\n", cmd->token);
 			red = lst_add_back(ft_strdup(cmd->token),
 					red_code, red);
 			if (!red)

@@ -44,7 +44,8 @@ int	ft_red_out(t_list **red)
 	{
 		if (duped != 0)
 			close(duped);
-		if (ft_strcmp((*red)->token, "\"\"") == 0)
+		if (ft_strcmp((*red)->token, "\"\"") == 0
+			|| ft_strcmp((*red)->token, "\'\'") == 0)
 			duped = open("\0", O_TRUNC | O_WRONLY, 0666);
 		else if ((*red)->kind == R_STDOUT)
 			duped = open((*red)->token, O_CREAT | O_TRUNC | O_WRONLY, 0666);
