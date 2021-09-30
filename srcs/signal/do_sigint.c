@@ -19,6 +19,5 @@ void	do_sigint(int signum)
 		ft_printf("\n%s%s%s ", PROMPT_COLOR, PROMPT, NC);
 	else
 		ft_printf("\n");
-	g_glob.ret = 130;
 	rl_replace_line("", 0);
 }

@@ -45,3 +45,18 @@ void	ft_free_proc(t_cli *cli)
 		free(tmp);
 	}
 }
+
+int	ft_contains(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		else
+			i++;
+	}
+	return (0);
+}

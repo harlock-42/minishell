@@ -187,6 +187,7 @@ t_list		*ft_find_path(t_list *cmd);
 char		*ft_double_strjoin(char *str1, char *str2, char *str3);
 void		ft_exec_failed(char **env, char **paths, char *str, char **av);
 void		ft_free_proc(t_cli *cli);
+int			ft_contains(char *str, char c);
 
 /*
 ** BUILT_INS
