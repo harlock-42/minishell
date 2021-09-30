@@ -6,11 +6,22 @@
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:02:54 by user42            #+#    #+#             */
-/*   Updated: 2021/09/16 10:40:28 by tallaire         ###   ########.fr       */
+/*   Updated: 2021/09/30 19:30:39 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	print_pwd_var(void)
+{
+	char	*pwd;
+	
+	pwd = our_getenv("PWD");
+	if (pwd == NULL)
+		return (-1);
+	ft_printf("%s\n", pwd);
+	return (1);
+}
 
 int	ft_pwd(t_list *cmd)
 {
@@ -18,12 +29,9 @@ int	ft_pwd(t_list *cmd)
 	size_t	size;
 
 	size = lst_size(cmd);
-	if (size > 0)
-	{
-		ft_printf("pwd: too many arguments\n");
-		return (1);
-	}
 	path = getcwd(NULL, 0);
+	if (path == NULL && errno == 2)
+		return (print_pwd_var());
 	if (path == NULL)
 	{
 		ft_perror("Echec: pwd:");

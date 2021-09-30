@@ -6,7 +6,7 @@
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:45:57 by tallaire          #+#    #+#             */
-/*   Updated: 2021/09/16 10:45:58 by tallaire         ###   ########.fr       */
+/*   Updated: 2021/09/30 20:27:41 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_glob
 }		t_glob;
 
 t_glob		g_glob;
+
+int			set_shlvl(void);
 
 /*
 ** GET_ENV
@@ -194,6 +196,7 @@ int			ft_contains(char *str, char c);
 */
 
 t_list		*join_env_in_tab(t_list *env);
+int			check_name_and_value(char *name, char *value);
 int			do_cd(char *path);
 int			do_cd_minus(char *path);
 int			do_export(char *name, char *value, int kind);

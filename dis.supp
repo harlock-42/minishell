@@ -2,5 +2,5 @@
 	ignore_lib
 	Memcheck:Leak
 	...
-	obj:/lib/x86_64-linux-gnu/libreadline.so.7.0
+	obj:/lib/x86_64-linux-gnu/libreadline.so.5.2
 }

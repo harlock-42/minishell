@@ -6,7 +6,7 @@
 #    By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/16 10:45:35 by tallaire          #+#    #+#              #
-#    Updated: 2021/09/16 10:45:36 by tallaire         ###   ########.fr        #
+#    Updated: 2021/09/30 20:10:14 by tallaire         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC		+=	cd.c
 SRC		+=	cd_utils.c
 SRC		+=	check_ambiguous_red.c
 SRC		+=	check_gram_char.c
+SRC		+=	check_name_and_value.c
 SRC		+=	checker.c
 SRC		+=	clean_dollars.c
 SRC		+=	dev_quote.c
@@ -117,6 +118,7 @@ SRC		+=	rm_quote.c
 SRC		+=	rm_sep_tok.c
 SRC		+=	rm_sep_token.c
 SRC		+=	rm_red_from_cmd.c
+SRC		+=	set_shlvl.c
 SRC		+=	successive_token.c
 SRC		+=	token_expander.c
 SRC		+=	token_expansion.c

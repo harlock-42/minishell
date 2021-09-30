@@ -6,7 +6,7 @@
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:45:28 by tallaire          #+#    #+#             */
-/*   Updated: 2021/09/30 19:09:38 by tallaire         ###   ########.fr       */
+/*   Updated: 2021/09/30 20:09:44 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	minishell(char *read, t_list *lex, t_cli *cli)
 		lex = lst_free(lex);
 		g_glob.aff_prompt = NO;
 		signal(SIGQUIT, do_sigquit);
-		// lst_print_cli(cli);
 		if (cli)
 			ft_master(cli);
 		signal(SIGQUIT, SIG_IGN);
@@ -56,6 +55,7 @@ int	main(void)
 	cli = NULL;
 	read = NULL;
 	g_glob.env = get_env(g_glob.env, &ret);
+	set_shlvl();
 	if (g_glob.env == NULL && ret == (-1))
 		return (0);
 	minishell(read, lex, cli);
