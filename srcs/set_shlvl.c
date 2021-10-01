@@ -70,7 +70,6 @@ int	set_shlvl(void)
 	int		val;
 
 	value = our_getenv("SHLVL");
-	ft_printf("%s\n", value);
 	if (value == NULL)
 		return (no_shlvl_var());
 	val = ft_atoi(value);

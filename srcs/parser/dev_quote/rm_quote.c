@@ -66,6 +66,7 @@ static	char	*rm_interlocked_quote(char *str)
 		++i;
 	}
 	new[j] = '\0';
+	free(str);
 	return (new);
 }
 

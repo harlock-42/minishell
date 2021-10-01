@@ -81,6 +81,7 @@ static	int	handle_var_help(t_list *cmd, int kind, char *value, char *name)
 	{
 		name = NULL;
 		value = NULL;
+		kind = 0;
 		name = get_name_var(cmd->token);
 		value = get_value_var(cmd->token, &kind);
 		if (value == NULL || name == NULL)
