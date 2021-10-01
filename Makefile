@@ -36,6 +36,7 @@ CFLAGS	=	-Werror -Wextra -Wall -c -g3
 TFLAGS	=	-lncurses
 
 SRC		+=	add_back_token_double_quote.c
+SRC		+=	add_sep_tok_for_red.c
 SRC		+=	built_ins.c
 SRC		+=	c_is_escape.c
 SRC		+=	cat_quote.c
