@@ -48,6 +48,8 @@ void	ft_execute_loc(char **av, char **env, char **paths)
 {
 	struct stat	buf;
 
+	if (ft_strcmp(av[0], "..") == 0 || ft_strcmp(av[0], ".") == 0)
+		ft_command_not_found(av, paths, env);
 	buf.st_mode = 0;
 	stat(av[0], &buf);
 	if (S_ISDIR(buf.st_mode))
@@ -69,7 +71,8 @@ void	ft_execute(char **av, char **env, char **paths)
 	i = -1;
 	if (ft_contains(av[0], '/') == 0)
 	{
-		if (paths == NULL)
+		if (paths == NULL || av[0][0] == '\0'
+				|| ft_strcmp(av[0], "..") == 0 || ft_strcmp(av[0], ".") == 0)
 			ft_execute_loc(av, env, paths);
 		else
 		{
