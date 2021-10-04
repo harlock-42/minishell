@@ -29,7 +29,7 @@ static	int	reset_shlvl(int value)
 
 	tmp = g_glob.env;
 	ft_putstr_fd("minishell: warning: shell level too high (", 2);
-	ft_putnbr_fd(value  + 1, 2);
+	ft_putnbr_fd(value + 1, 2);
 	ft_putstr_fd("), initializer to 1\n", 2);
 	while (g_glob.env && ft_strcmp(g_glob.env->name, "SHLVL") != 0)
 		g_glob.env = g_glob.env->next;

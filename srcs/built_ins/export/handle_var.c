@@ -75,7 +75,7 @@ static	char	*get_value_var(char *str, int *kind)
 static	int	handle_var_help(t_list *cmd, int kind, char *value, char *name)
 {
 	t_list	*tmp;
-	
+
 	tmp = cmd;
 	while (cmd)
 	{

@@ -15,7 +15,7 @@
 static int	print_pwd_var(void)
 {
 	char	*pwd;
-	
+
 	pwd = our_getenv("PWD");
 	if (pwd == NULL)
 		return (-1);
