@@ -48,7 +48,8 @@ void	ft_execute_loc(char **av, char **env, char **paths)
 {
 	struct stat	buf;
 
-	if (ft_strcmp(av[0], "..") == 0 || ft_strcmp(av[0], ".") == 0)
+	if (ft_strcmp(av[0], "..") == 0 || ft_strcmp(av[0], ".") == 0
+		|| av[0][0] == '\0')
 		ft_command_not_found(av, paths, env);
 	buf.st_mode = 0;
 	stat(av[0], &buf);
