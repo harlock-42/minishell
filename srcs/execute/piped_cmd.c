@@ -26,7 +26,10 @@ void	ft_child_proc(t_cli *cli)
 	if (ft_redir(cli->red) == 0)
 		ft_exit_proc(NULL, 0);
 	if (cli->cmd == NULL)
+	{
+		ft_free_proc(g_glob.head);
 		exit(EXIT_SUCCESS);
+	}
 	ret = is_a_built_in(cli);
 	if (ret == 1)
 	{
