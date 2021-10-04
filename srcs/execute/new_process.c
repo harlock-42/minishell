@@ -14,7 +14,7 @@
 
 void	ft_command_not_found(char **av, char **paths, char **env)
 {
-	ft_putstr_fd("Minishell: command not found: ", 2);
+	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putstr_fd(av[0], 2);
 	ft_putstr_fd("\n", 2);
 	ft_freetab(paths);
@@ -57,11 +57,11 @@ void	ft_execute_loc(char **av, char **env, char **paths)
 	{
 		errno = EISDIR;
 		ft_exec_failed(env, paths, ft_double_strjoin
-			("Minishell: ", av[0], " : "), av);
+			("minishell: ", av[0], " : "), av);
 	}
 	execve(av[0], av, env);
 	ft_exec_failed(env, paths,
-		ft_double_strjoin("Minishell: ", av[0], " : "), av);
+		ft_double_strjoin("minishell: ", av[0], " : "), av);
 }
 
 void	ft_execute(char **av, char **env, char **paths)
@@ -83,7 +83,7 @@ void	ft_execute(char **av, char **env, char **paths)
 				if (execve(str, av, env) == -1 && errno == 2)
 					free(str);
 				else
-					ft_exec_failed(env, paths, ft_double_strjoin("Minishell: ",
+					ft_exec_failed(env, paths, ft_double_strjoin("minishell: ",
 							paths[i], ft_strjoin(av[0], ": ")), av);
 			}
 			ft_command_not_found(av, paths, env);

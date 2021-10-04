@@ -64,7 +64,7 @@ int	ft_exit(t_list *cmd)
 	if (size > 1)
 	{
 		lst_free(cmd);
-		ft_printf("exit\nminishell: exit: too many arguments\n");
+		ft_putstr_fd("exit\nminishell: exit: too many arguments\n", 2);
 		g_glob.ret = 1;
 	}
 	else if (size == 1)

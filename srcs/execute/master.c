@@ -33,7 +33,7 @@ int	*ft_fdptab(t_cli *cli)
 void	ft_print_crdmp(int sig)
 {
 	(void)sig;
-	ft_putstr_fd("Quit (Core dumped)\n", 1);
+	ft_putstr_fd("Quit (Core dumped)\n", 2);
 }
 
 void	ft_wait_piped_cmd(int **fdptab, int i)

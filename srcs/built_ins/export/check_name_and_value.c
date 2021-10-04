@@ -7,8 +7,9 @@ static	int	is_arg_name_valid(char *str)
 	i = 0;
 	if (str[0] == '\0' || (str[0] >= '0' && str[0] <= '9'))
 	{
-		ft_printf("minishell: export: %s : ", str);
-		ft_printf("invalid option\n");
+		ft_putstr_fd("minishell: export: ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd(" : invalid option\n", 2);
 		return (NO);
 	}
 	while (str && str[i])

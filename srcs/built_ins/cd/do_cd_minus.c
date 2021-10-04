@@ -52,7 +52,8 @@ static	int	go_to_old_path_continued(char *old_pwd,
 	curd = ft_strdup(name_var);
 	ret = modify_variable("OLDPWD", curd, 0);
 	ret = modify_variable("PWD", old_pwd, 0);
-	ft_printf("%s\n", old_pwd);
+	ft_putstr_fd(old_pwd, 2);
+	ft_putstr_fd("\n", 2);
 	free(old_pwd);
 	free(curd);
 	if (ret)

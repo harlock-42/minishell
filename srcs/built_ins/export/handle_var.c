@@ -77,6 +77,7 @@ static	int	handle_var_help(t_list *cmd, int kind, char *value, char *name)
 	t_list	*tmp;
 
 	tmp = cmd;
+	g_glob.ret = 0;
 	while (cmd)
 	{
 		name = NULL;
@@ -97,7 +98,6 @@ static	int	handle_var_help(t_list *cmd, int kind, char *value, char *name)
 		cmd = cmd->next;
 	}
 	cmd = tmp;
-	g_glob.ret = 0;
 	return (1);
 }
 

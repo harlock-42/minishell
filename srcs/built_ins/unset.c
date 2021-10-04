@@ -55,8 +55,9 @@ static	int	is_var_valid(char *str)
 	{
 		if (str[i] != '_' && c_is_alnum(str[i]) == NO)
 		{
-			ft_printf("minishell: unset : \" %s \" ", str);
-			ft_printf("invalid username\n");
+			ft_putstr_fd("minishell: unset : \" ", 2);
+			ft_putstr_fd(str, 2);
+			ft_putstr_fd(" \" invalid username\n", 2);
 			g_glob.ret = 1;
 			break ;
 		}
@@ -64,8 +65,9 @@ static	int	is_var_valid(char *str)
 	}
 	if (str[0] == '\0' || (str[0] >= '0' && str[0] <= '9'))
 	{
-		ft_printf("minishell: unset : \" %s \" ", str);
-		ft_printf("invalid username\n");
+		ft_putstr_fd("minishell: unset : \" ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd(" \" invalid username\n", 2);
 		g_glob.ret = 1;
 	}
 	return (YES);
