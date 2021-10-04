@@ -49,8 +49,6 @@ int	valid_num_of_arg(char *str)
 		free(str);
 		return (our_exit(255));
 	}
-	if (g_glob.ispipe == 0)
-		write(2, "exit\n", 5);
 	our_exit(set_ret_value(str));
 	return (1);
 }
@@ -60,11 +58,13 @@ int	ft_exit(t_list *cmd)
 	size_t	size;
 	char	*str;
 
+	if (g_glob.ispipe == 0)
+		write(2, "exit\n", 5);
 	size = lst_size(cmd);
 	if (size > 1)
 	{
 		lst_free(cmd);
-		ft_printf("exit\nminishell: exit: too many arguments\n");
+		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 		g_glob.ret = 1;
 	}
 	else if (size == 1)
@@ -75,8 +75,6 @@ int	ft_exit(t_list *cmd)
 	}
 	else
 	{
-		if (g_glob.ispipe == 0)
-			write(2, "exit\n", 5);
 		lst_free(cmd);
 		our_exit(0);
 	}
