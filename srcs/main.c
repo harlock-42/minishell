@@ -30,7 +30,10 @@ void	minishell(char *read, t_list *lex, t_cli *cli)
 		lex = lst_free(lex);
 		g_glob.aff_prompt = NO;
 		signal(SIGQUIT, do_sigquit);
+<<<<<<< HEAD
 		//lst_print_cli(cli);
+=======
+>>>>>>> 2f0abec9226246b382025ed9b485d743913faf05
 		if (cli)
 			ft_master(cli);
 		signal(SIGQUIT, SIG_IGN);

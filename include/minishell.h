@@ -105,6 +105,7 @@ int			successive_token(t_list *lex);
 size_t		token_len(size_t y, char *str);
 t_cli		*rm_ambiguous_red_from_cli_red(t_cli *cli);
 t_list		*add_back_token_double_quote(char *str, t_list *lex);
+t_list		*add_sep_tok_for_red(t_list *lex);
 t_list		*clean_dollars(t_list *lex);
 t_list		*do_expansion(t_list *lex);
 t_list		*expand_if_we_need_to(t_list *lex);

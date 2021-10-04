@@ -93,6 +93,9 @@ t_list	*lexer(char *line, t_list *lex)
 	lex = lst_token(lex, line);
 	if (!lex)
 		return (NULL);
+	lex = add_sep_tok_for_red(lex);
+	if (lex == NULL)
+		return (lst_free(lex));
 	if (is_quote_even(lex) == NO)
 		return (NULL);
 	if (checker(lex))
