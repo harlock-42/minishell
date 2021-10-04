@@ -17,9 +17,11 @@ static int	print_pwd_var(void)
 	char	*pwd;
 
 	pwd = our_getenv("PWD");
+	//pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 		return (-1);
 	ft_printf("%s\n", pwd);
+	//free(pwd);
 	return (1);
 }
 
