@@ -27,9 +27,6 @@ void	minishell(char *read, t_list *lex, t_cli *cli)
 		if (lex)
 			cli = parser(lex);
 		g_glob.head = cli;
-		if (!cli)
-			ft_printf("merde\n");
-		//lst_print_cli(cli);
 		lex = lst_free(lex);
 		g_glob.aff_prompt = NO;
 		signal(SIGQUIT, do_sigquit);
