@@ -48,8 +48,9 @@ static	t_cli	*cli_add_back(t_list *cmd, t_list *red, int sep, t_cli *cli)
 	return (cli);
 }
 
-static	t_list	*get_cmd(t_list *cmd, t_list *lex)
+static	t_list	*get_cmd(t_list *cmd, t_list *lex, int *stop)
 {
+	*stop = NO;
 	while (lex && lex->kind == WD_SEP_TOK)
 		lex = lex->next;
 	while (lex && lex->kind != WD_SEP_CMD)
@@ -57,7 +58,10 @@ static	t_list	*get_cmd(t_list *cmd, t_list *lex)
 		cmd = lst_add_back(ft_strdup(lex->token),
 				lex->kind, cmd);
 		if (!cmd)
+		{
+			*stop = YES;
 			return (NULL);
+		}
 		lex = lex->next;
 	}
 	return (cmd);
@@ -73,17 +77,18 @@ static	t_list	*move_lex(t_list *lex)
 t_cli	*get_cli_continued(t_list *lex, t_cli *cli, t_list *cmd, t_list *dup)
 {
 	int	sep;
+	int	stop;
 
 	while (lex)
 	{
 		sep = 0;
 		if (lex != NULL)
-			cmd = get_cmd(cmd, lex);
-		if (!cmd)
+			cmd = get_cmd(cmd, lex, &stop);
+		if (!cmd && stop == YES)
 			return (NULL);
 		lex = move_lex(lex);
-		dup = lst_dup(cmd);
-		if (!dup)
+		dup = lst_dup_cli(cmd, &stop);
+		if (!dup && stop == YES)
 			return (NULL);
 		if (lex && lex->token[0] == '|')
 			sep = 1;

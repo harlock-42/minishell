@@ -21,7 +21,7 @@ int	ft_cd(t_list *cmd)
 		return (go_home());
 	else if (size > 1)
 	{
-		ft_printf("bash: cd: too many arguments\n");
+		ft_putstr_fd("bash: cd: too many arguments\n", 2);
 		g_glob.ret = 1;
 		return (-1);
 	}

@@ -138,6 +138,7 @@ t_cli		*rm_sep_token(t_cli *cli);
 t_list		*cat_quote(t_list *cmd);
 t_list		*get_var(char *str);
 t_list		*rm_sep_tok(t_list *lex);
+t_list		*lst_dup_cli(t_list *list, int *stop);
 void		print_stx_err(char *str, int kind);
 
 /*

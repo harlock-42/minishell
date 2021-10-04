@@ -85,7 +85,7 @@ t_cli	*get_redirect(t_cli *cli)
 	tmp_cli = cli;
 	while (cli)
 	{
-		if (cli->cmd->kind != WD_SEP_CMD)
+		if (cli->cmd && cli->cmd->kind != WD_SEP_CMD)
 		{
 			if (is_a_red(cli->cmd) == YES)
 			{

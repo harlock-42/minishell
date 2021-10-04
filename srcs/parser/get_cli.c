@@ -12,6 +12,28 @@
 
 #include "minishell.h"
 
+t_list	*lst_dup_cli(t_list *list, int *stop)
+{
+	t_list	*new;
+	t_list	*tmp;
+
+	*stop = NO;
+	new = NULL;
+	tmp = list;
+	while (list)
+	{
+		new = lst_add_back(ft_strdup(list->token), list->kind, new);
+		if (!new)
+		{
+			*stop = YES;
+			return (NULL);
+		}
+		list = list->next;
+	}
+	list = tmp;
+	return (new);
+}
+
 /*
 ** split the command line in simple commands
 ** in function of the command separators (';' '|').
