@@ -35,7 +35,6 @@ int	ft_env(t_list *cmd)
 		g_glob.env = g_glob.env->next;
 	}
 	g_glob.env = tmp;
-	print_env();
 	g_glob.ret = 0;
 	return (1);
 }
